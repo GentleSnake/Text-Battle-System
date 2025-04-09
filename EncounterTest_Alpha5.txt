@@ -1,0 +1,399 @@
+bartersystem.py:
+---------------
+import random
+from random import choice
+import battlesystem
+import os
+def cls():
+    os.system('clear')
+
+
+def shopvisit():
+    hstock = ["Thunder Wand", "Fire Wand", "Ice Wand", "Poison Spell", "Paralysis Spell" ]
+    cls()
+    print("You found a shop. The vendor has some items for sale:")
+    stock = [choice(hstock), choice(hstock)]
+    
+    while stock[0] == stock[1]:
+        stock.remove(stock[1])
+        stock.append(choice(hstock))
+        
+    print(stock)
+    print()
+    buy = int(input("Do you want to buy anything? Yes(1) or No(2) "))
+    if buy == 1:
+        whichitem = int(input("Which do you want? Place one(1) or Place two(2)?"))
+        if whichitem == 1:
+            if stock[0] == hstock[0]:
+                twand = True
+                cost = 100
+            elif stock[0] == hstock[1]:
+                fwand = True
+                cost = 80
+            elif stock[0] == hstock[2]:
+                iwand = True
+                cost = 90
+            elif stock[0] == hstock[3]:
+                paralysis_spell = True
+                cost = 50
+            elif stock[0] == hstock[4]:
+                poison_spell = True
+                cost = 60
+                
+                
+                
+        elif whichitem == 2:
+            if stock[1] == hstock[0]:
+                twand = True
+                cost = 100
+            elif stock[1] == hstock[1]:
+                fwand = True
+                cost = 80
+            elif stock[1] == hstock[2]:
+                iwand = True
+                cost = 90
+            elif stock[1] == hstock[3]:
+                paralysis_spell = True
+                cost = 50
+            elif stock[1] == hstock[4]:
+                poison_spell = True
+                cost = 60
+
+battlesystem.py:
+---------------
+import os
+import random          #Imports all of the nescesary stuff for it
+import time         #To function
+import bartersystem
+global enemy
+def cls():
+    os.system('clear')  # teaches the system how to clear the console
+health = 10
+max_health = 10
+upgrade_counter = 1
+upgrade_counter_min = 1
+dmg = 3
+magic_damage = 5
+goldmax = 0
+enemy = 0
+def battle():
+    global health
+    global enemy_health
+    global max_health
+    global upgrade_counter
+    global death
+    global upgrade_choice
+    global dmg
+    global magic_damage
+    global goldmax
+    enemy_found = random.randint(1,8)    #Picks random enemy
+    if enemy_found == 1:            #And asigns them different stats
+        enemy = "BATTRAX"
+        enemy_health = 9
+        gold = 30
+    elif enemy_found ==2:
+        enemy = "GEBLIN"
+        enemy_health = 5
+        gold = 40
+    elif enemy_found == 3:
+        enemy = "WARRACK"
+        enemy_health = 7
+        gold = 50
+    elif enemy_found == 4:
+        enemy = "ZORBO"
+        enemy_health = 1
+        gold = 10
+    elif enemy_found == 5:
+        enemy = 'HAIRIMP'
+        enemy_health = 2
+        gold = 40
+    elif enemy_found == 6:
+        enemy = "GHOSTWOOD"
+        enemy_health = 7
+        gold = 60
+    elif enemy_found == 7:
+        enemy = "BULLTROLL"
+        enemy_health = 11
+        gold = 100
+    elif enemy_found == 8:
+        enemy = "BOMBLOONS"
+        enemy_health = 2
+        gold = 15
+    battle = 1
+    cls()
+    print("You found a(n) " + enemy + "!")  
+    time.sleep(1.5)
+    print()
+    while battle == 1:
+        cls()
+        print("YOUR TURN")
+        cls()
+        if enemy == "GEBLIN":
+            print("    ____"   )
+            print("   |0\/0|  ")
+            print("   |^^^^| ")
+            print("   /____\  ")
+            print("  /|    |\ ")
+            print(" | |____| | ")
+            print("   d    b ")
+            print(" ")
+
+        elif enemy == "BULLTROLL":
+            print("    ____    ")
+            print("   /0\/0\ ")
+            print("   | OO |  ")
+            print("    \__/   "   )
+            print("    /  \ ")
+            print(" ||/    \|| ")
+            print("|| |    | || ")
+            print("|| |    | || ")
+            print("|| |    | ||")
+            print("() ||  || () ")
+            print("   ||  ||  \ ")
+            print("   ||  ||   \ ")
+            print("   ||  ||    \ ")
+            print("   ||  ||     \ ")
+            print("   ||  ||      \ ")
+            print("   __  __       {} ")
+            print("")
+        if enemy == "HAIRIMP":
+            print("    _____"   )
+            print("   /     \  ")
+            print("  / *   * \ ")
+            print("/ \  w w  / \   ")
+            print("|  \_^_^_/  |" )
+            print("|   /   \   |")
+            print("   |     |")
+            print("   _     _ ")
+            print("")
+            print(" ")
+
+        elif enemy == "WARRACK":
+            print("    __")
+            print("   |00\_   ")
+            print("   |    |> ")
+            print("    \  / ")
+            print("     ||   "   )
+            print("     ||  ")
+            print("     ||  ")
+            print("     || ")
+            print("    |  | ")
+            print("    |__| ")
+            print("   ||  ||  ")
+            print("   ||  ||   ")
+            print("   ||  ||   ")
+            print("   ||  ||     ")
+            print("   ||  ||      ")
+            print("   ||  ||       ")
+            print("   ___  ___   ")
+            print("")
+        elif enemy == "BOMBLOONS":
+            print("    _____"   )
+            print("   /     \  ")
+            print("  /       \ ")
+            print("  \       /    ")
+            print("   \_____/  " )
+            print("      |     ")
+            print("  / _i|__ \ ")
+            print(" o |     | o  ")
+            print("   \_____/   ")
+            print(" / ")
+            print("o      ")
+            print("")
+        elif enemy == "ZORBO":
+            print("   ______"   )
+            print("  / 0  0 \ ")
+            print(" /________\ ")
+            print("")
+        elif enemy == "GHOSTWOOD":
+            print("    ")
+            print("              _____"   )
+            print("             /     \  ")
+            print("            /       \ ")
+            print("            \       /         _ ")
+            print("     ______  \_____/ ________/\ \ " )
+            print("           \  |  |  / "   )
+            print("            \ |  | / ")
+            print("             \|  |/  ")             
+            print("              |  | ")
+            print("              |  | ")
+            print("              |  | ")
+            print("              |  | ")
+            print("              |  |  ")
+            print("              |  |            ")
+            print("              |  |      ")
+            print("             /    \          ")
+            print("            /______\       ")
+            print("     ")
+            print("")
+        elif enemy == "BATTRAX":
+            print("         ___  _____  __"   )
+            print("   _____/   \/     \/  \_____ ")
+            print("   \_______ / 0   0 \_______/")
+            print("          / \  WWW  / \   ")
+            print("          |  \_WWW_/  |" )
+            print("        /-|   /   \   |-\ ")
+            print("       /  /  |     |  \  \ ")
+            print("       \ \   _     _  /  / ")
+            print("")
+            print(" ")
+            
+        
+        if upgrade_counter < 0:
+            upgrade_counter = upgrade_counter = 0 
+        print("YOUR Health: " + str(health) + " | " + enemy + " Health: " + str(enemy_health))
+        print()
+        print("Basic Attack|Damage:" + str(dmg) + "|Acuracy:100%") 
+        print("BASIC MAGIC |Damage:" + str(magic_damage) + "|Acuracy:70%")
+        print("Magic Heal|+7HP|Acuracy:100%")
+        print("Floor|" + str(upgrade_counter))
+        print("GOLD: " + str(goldmax))
+        print()
+        attack_choice = input("Do you want to ATTACK(1) or MAGIC(2) or RUN(9)? ")
+        if attack_choice == "1":
+            print()
+            print("You ATTACK the " + enemy + "!")
+            time.sleep(.8)
+            enemy_health = enemy_health - dmg
+            if enemy_health <= 0:
+                print("You killed the " + enemy + " !" )
+                goldmax += gold
+                print("You gained " + str(gold) + " GOLD! ")
+                time.sleep(1)
+                cls()
+                print("YOU WON. ")
+                upgrade_counter = upgrade_counter + 1
+                time.sleep(1.5)
+                break
+                battle = 0
+
+        
+        elif attack_choice == "2":
+            print()
+            magic_type = input("What MAGIC will you use? FIRE(1) or HEAL(2) ")
+            if magic_type == "1":
+                print("You FIRE the " + enemy + "!")
+                time.sleep(.8)
+                chance_hit = random.randint(1,100)
+                if chance_hit <= 70:
+                    enemy_health  = enemy_health - magic_damage
+                    print("You did " + str(magic_damage) + " damage!")
+                    if enemy_health <= 0:
+                        print("You killed the " + enemy + " !" )
+                        goldmax += gold
+                        print("You gained " + str(gold) + " GOLD! ")
+                        time.sleep(1)
+                        cls()
+                        print("YOU WON. ")
+                        upgrade_counter = upgrade_counter + 1
+                        
+                        break
+                        battle = 0
+                        time.sleep(1)
+            elif magic_type == "2":
+                health = health + 7
+                while health > max_health:
+                    health = health - 1
+                print("You Healed! ")
+                time.sleep(1.5)
+            else:
+                print("You missed.")
+                time.sleep(1.5)
+        elif attack_choice == "9":
+            print("You ran away!")
+            upgrade_counter = upgrade_counter + 0
+            time.sleep(1.5)
+            break
+            battle = 0
+            
+        print()
+        print(enemy + "'S " + "TURN")
+        print("The " + enemy + " atacks!")
+        time.sleep(0.8)
+        chance_hit = random.randint(1,100)
+        if chance_hit <= 70:
+            health = health - 3
+            print("The enemy did 3 damage!")
+            time.sleep(1.5)
+            if health <= 0:
+                cls()
+                print("YOU DIED!")
+                print("GAME OVER")
+                play_again = input("Would you like to play again? ")
+                if play_again == "yes":
+                    health = 10
+                    upgrade_counter = 0
+                    break
+                elif play_again == "no":
+                    print("quit the game bozo")
+                    while True:
+                        time.sleep(1)
+                
+        else:
+            time.sleep(.8)
+            print("The " + enemy + " missed his attack!")
+            time.sleep(1.5)
+            cls()
+        time.sleep(.8)
+    print("The battle has ended. ")
+    time.sleep(1)
+    print()
+    print()
+    if upgrade_counter % 5 == 0:
+        if upgrade_counter != 0:
+            upgrade_choice = input("would you like to upgrade health(1) or damage(2)? ")
+            if upgrade_choice == "1":
+                max_health = max_health + 4
+                print("Your max health is now " + str(max_health) + "!")
+                time.sleep(1.5)
+            elif upgrade_choice == "damage":
+                type_of_damage = input("ATTACK(1) or FIRE(2)")
+                if type_of_damage == "1":
+                    dmg = dmg + 2
+                if type_of_damage == "2":
+                    magic_damage = magic_damage + 2
+
+main.py:
+-------
+import os
+import random
+import time
+import battlesystem
+import bartersystem
+twand = False
+fwand = False
+iwand = False
+paralysis_spell = False
+poison_spell = False
+death = 0
+upgrade_counter = 0
+health = 10
+begin = 0
+goldmax = 0
+def cls():
+    os.system("clear")
+cls()
+print("This is a placeholder for an encounter system.")
+while True:
+    start = input("Press ENTER to start. Enter 'help' to get to the help menu. ")
+    if start == "":
+        begin = 1
+        cls()
+        while True:
+            start2 = input("Press ENTER to fight an enemy. ")
+            if start2 == "":
+                while death == 0:
+                    battlesystem.battle()
+                cls()
+    elif start == "help": 
+        print()
+        print("Welcome to EncounterTest! This is atext based game I am working on.")
+        print("Upon starting the game, press enter to get into a fight")
+        print("There are quite a few enemies in this game, and in the future I will add more.")
+        print("You will have the option to attack or use magic. ")
+        print("You will be able to see the stats of both of these.")
+        print("Every five floors, you will have the option to upgrade your max health.")
+        print()
+        lmao = input("Press enter to leave.")
+        cls()
+
